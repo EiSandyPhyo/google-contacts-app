@@ -8,7 +8,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Contact from "./Components/Contact";
 import Detail from "./Pages/Detail";
-import Routeguard from "./components/Routeguard";
+import Routeguard from "./Components/Routeguard";
 import SearchDetail from "./Pages/SearchDetail";
 
 const App = () => {

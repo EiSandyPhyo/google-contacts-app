@@ -17,12 +17,12 @@ const App = () => {
       <Route
         path="/"
         element={
-          
-            <Login />
-          
+          <Routeguard>
+            <Contact />
+          </Routeguard>
         }
       />
-      <Route path='/contact' element={<Contact/>}/>
+      {/*<Route path='/contact' element={<Contact/>}/> */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/create" element={<CreateContact />} />

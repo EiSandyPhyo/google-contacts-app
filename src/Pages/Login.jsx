@@ -33,7 +33,7 @@ const Login = () => {
         })
       );
       if (data.token) {
-        nav("/");
+        nav("/contact");
       }
     } catch (error) {
       toast.error("Username or password is incorrect. Please Try again.");

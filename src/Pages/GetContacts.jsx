@@ -10,7 +10,7 @@ import { BsFillStarFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const GetContacts = (props) => {
-  const { contact, menuOpen, checked, setChecked, selected, setSelected } =
+  const { contact, menuOpen, checked, setChecked, selected, setSelected, handleDeleteContact } =
     props;
 
   const [star, setStar] = useState(true);
@@ -150,7 +150,17 @@ const GetContacts = (props) => {
                     </a>
                   </li>
                   <li>
-                    <a>
+                    <a
+                      className="text-red-500"
+                      onClick={() => {
+                        const confirmed = window.confirm(
+                          `Are you sure you want to delete this "${contact?.firstName} ${contact?.lastName}" contact?`,
+                        );
+                        if (confirmed) {
+                          handleDeleteContact(contact?.id);
+                        }
+                      }}
+                    >
                       <RiDeleteBin6Line />
                       Delete
                     </a>

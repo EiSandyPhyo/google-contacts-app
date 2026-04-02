@@ -88,6 +88,16 @@ const Contact = () => {
     );
   }
 
+  const handleDeleteContact = (id) => {
+    const savedContacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    const updatedContacts = savedContacts.filter(
+      (contact) => contact.id !== id,
+    );
+
+    setContacts(updatedContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+  };
+
   console.log(contacts);
 
   return (
@@ -258,6 +268,7 @@ const Contact = () => {
                         setChecked={setChecked}
                         selected={selected}
                         setSelected={setSelected}
+                        handleDeleteContact={handleDeleteContact}
                       />
                     );
                   })}
@@ -265,102 +276,6 @@ const Contact = () => {
               )}
             </table>
           </div>
-
-          {/* <div
-            className={
-              menuOpen
-                ? "w-2/4 h-14 max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block mt-3 ml-2"
-                : "w-1/7 h-14  max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block mt-3 ml-2"
-            }
-          >
-            <div
-              className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
-              data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
-            >
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="btn btn-ghost btn-xs "
-              >
-                <MdOutlineMenuOpen
-                  size={23}
-                  className={menuOpen ? " rotate-180" : ""}
-                />
-              </button>
-            </div>
-            <div className=" w-96 mt-[-2.5rem] ml-auto">
-              {menuOpen ? (
-                <div class="card bg-base-100 shadow-3xl">
-                  <div class="card-body">
-                    <h2 class="card-title">Add birthdays</h2>
-                    <div className="flex flex-wrap justify-between items-start">
-                      <div className="w-5/6">
-                        <p className="text-xs text-500 ">
-                          Save your contacts' birthdays to see them on your
-                          birthday calendar and get helpful cues here and across
-                          Google services
-                        </p>
-                      </div>
-                      <div className="1/6">
-                        <MdOutlineInfo
-                          size={20}
-                          className="cursor-pointer ml-auto"
-                        />
-                      </div>
-                    </div>
-
-                    <div className=" flex flex-col gap-3">
-                      <ul className=" space-y-2  menu menu-compact dropdown-content ">
-                        {currentPages.map((contact) => {
-                          const name =
-                            contact?.firstName + " " + contact?.lastName;
-                          const email = contact?.email;
-                          return (
-                            <li className="hover:bg-[#F2F7FF]">
-                              <div
-                                className="flex flex-wrap justify-between items-center cursor-pointer"
-                                onClick={(e) => handlerClick(e, name, email)}
-                              >
-                                <div className="flex flex-wrap gap-3  cursor-pointer">
-                                  <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                      <img
-                                        src={contact?.image}
-                                        // `https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5` 
-                                        alt="Avatar Tailwind CSS Component"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-col justify-center">
-                                    <div className="font-semibold capitalize">
-                                      <p className="text-sm">
-                                        {contact?.firstName +
-                                          " " +
-                                          contact?.lastName}
-                                      </p>
-                                    </div>
-                                    <div className="">
-                                      <p className="text-xs text-gray-500">
-                                        {contact?.email}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="ml-auto">
-                                  <MdCake />
-                                </div>
-                              </div>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div> */}
         </div>
         <div className="flex flex-col justify-center items-center mt-10">
           {numbers.length !== 0 && (

@@ -37,7 +37,7 @@ const GetContacts = (props) => {
           <div className="flex items-center space-x-3">
             <div className="avatar group-hover:invisible">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={contact?.image} alt="Avatar Tailwind CSS Component" />
+                <img src={contact?.image} alt={contact?.firstName} />
               </div>
             </div>
             {/* checkbox visible */}
@@ -49,12 +49,12 @@ const GetContacts = (props) => {
                   type="checkbox"
                   className="checkbox rounded-sm"
                   checked={checked.includes(
-                    contact?.firstName + " " + contact?.lastName
+                    contact?.firstName + " " + contact?.lastName,
                   )}
                   onChange={(e) =>
                     checkboxHandler(
                       e,
-                      contact?.firstName + " " + contact?.lastName
+                      contact?.firstName + " " + contact?.lastName,
                     )
                   }
                 />
@@ -83,7 +83,8 @@ const GetContacts = (props) => {
               : "w-1/5 max-[574px]:hidden max-[1003px]:hidden md:text-sm"
           }
         >
-          {/* {address} */} {contact?.company?.title + contact?.company?.nam}
+          {/* {address} */}{" "}
+          {contact?.company?.title + " - " + contact?.company?.department}
         </td>
 
         <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">

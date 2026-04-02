@@ -1,40 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { BiSearchAlt } from "react-icons/bi";
 import { GoPerson } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useLogoutMutation } from "../redux/api/authApi";
 import { removeUser } from "../redux/services/authSlice";
-import { useGetContactQuery } from "../redux/api/contactApi";
 import Search from "./Search";
+/* import { useLogoutMutation } from "../redux/api/authApi"; 
+import { useGetContactQuery } from "../redux/api/contactApi"; */
 
 const Navbar = ({
-  AppBar, 
+  AppBar,
   open,
   handleDrawerClose,
   handleDrawerOpen,
   toggleDrawer,
 }) => {
-  const user = JSON.parse(Cookies.get("user"));
+  const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
   const pfImage = JSON.parse(Cookies.get("image"));
-  //console.log(pfImage);
-  const token = Cookies.get("token");
-  //console.log(token);
-  const [logout] = useLogoutMutation();
+  const token = Cookies.get("token") || "";
+  /* const [logout] = useLogoutMutation(); */
+
   const nav = useNavigate();
   const dispatch = useDispatch();
-  //console.log(user);
 
-  const logoutHandler = async () => {
+  /*   const logoutHandler = async () => {
     const { data } = await logout(token);
     dispatch(removeUser());
     nav("/login");
-    //console.log(data);
+  }; */
+  const logoutHandler = async () => {
+    localStorage.removeItem("contacts");
+    dispatch(removeUser());
+    nav("/login");
   };
 
   return (
@@ -75,7 +76,11 @@ const Navbar = ({
               <div className="dropdown dropdown-end lg:ps-2 ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={pfImage} className="w-5 h-5" />
+                    <img
+                      src={pfImage}
+                      className="w-5 h-5"
+                      alt={user?.name || "Profile"}
+                    />
                   </div>
                 </label>
                 <ul

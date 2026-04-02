@@ -26,7 +26,7 @@ const Contact = () => {
   const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(7);
+  const [pageSize] = useState(8);
 
   const [selected, setSelected] = useState(true); //hide n show select & unselect
   const [checked, setChecked] = useState([]); //checkbox select & unselect
@@ -38,21 +38,29 @@ const Contact = () => {
     // console.log(e.target)
     // console.log(name, email);
   };
-
   useEffect(() => {
-    if (data !== undefined && (data?.users).length !== 0) {
-      setContacts(data?.users);
-      // console.log(data?.users);
+    const savedContacts = localStorage.getItem("contacts");
+
+    if (savedContacts) {
+      setContacts(JSON.parse(savedContacts));
+    } else if (data?.users) {
+      setContacts(data.users);
+      localStorage.setItem("contacts", JSON.stringify(data.users));
     }
-  });
+  }, [data]);
+
+  const sortedContacts = [...contacts].sort((a, b) =>
+    `${a.firstName} ${a.lastName}`.localeCompare(
+      `${b.firstName} ${b.lastName}`,
+    ),
+  );
+  // console.log(sortedContacts);
 
   const lastPage = currentPage * pageSize; // 10 = 1*10
   const firstPage = lastPage - pageSize; // 0 = 10-10
 
-  const currentPages = contacts.slice(firstPage, lastPage); // =contacts[](0,10)
-  // console.log(currentPages); //10
-  const noOfPage = Math.ceil(contacts.length / pageSize);
-  // console.log(noOfPage); //30
+  const currentPages = sortedContacts.slice(firstPage, lastPage); // =contacts[](0,10)
+  const noOfPage = Math.ceil(sortedContacts.length / pageSize);
   const numbers = [...Array(noOfPage + 1).keys()].slice(1);
   // console.log(numbers);
 
@@ -80,12 +88,16 @@ const Contact = () => {
     );
   }
 
+  console.log(contacts);
+
   return (
     <>
       <Sidebar>
         <div className=" flex">
           <div className=" w-6/7">
-            <table className= "table "/* {`${menuOpen ? "table w-3/3" : "table w-full"}`} */>
+            <table
+              className="table " /* {`${menuOpen ? "table w-3/3" : "table w-full"}`} */
+            >
               {/* head */}
               <thead>
                 {selected ? (
@@ -106,7 +118,7 @@ const Contact = () => {
                           : "capitalize w-1/5 max-[574px]:hidden max-[1003px]:hidden"
                       }
                     >
-                      {/* address */} Job title & company
+                      {/* address */} Job title & Department
                     </th>
                     <th className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
                       <div className="flex items-center space-x-5 justify-end">
@@ -223,18 +235,16 @@ const Contact = () => {
 
               {(data?.users).length !== 0 && (
                 <tbody>
-                  
                   <tr>
                     <td>
                       <div className="my-4">
-                      <p className=" uppercase text-xs text-[#91979b] ml-4 tracking-widest">
-                        {contacts.length === 1
-                          ? `contact (${contacts.length})`
-                          : `contacts (${contacts.length})`}
-                      </p>
-                    </div>
+                        <p className=" uppercase text-xs text-[#91979b] ml-4 tracking-widest">
+                          {contacts.length === 1
+                            ? `contact (${contacts.length})`
+                            : `contacts (${contacts.length})`}
+                        </p>
+                      </div>
                     </td>
-                    
                   </tr>
 
                   {currentPages?.map((contact) => {
@@ -351,7 +361,6 @@ const Contact = () => {
               )}
             </div>
           </div> */}
-
         </div>
         <div className="flex flex-col justify-center items-center mt-10">
           {numbers.length !== 0 && (

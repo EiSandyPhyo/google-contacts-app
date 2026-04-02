@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../redux/services/authSlice";
 
 const Login = () => {
-  const [username, setUserName] = useState("atuny0");
-  const [password, setPassword] = useState("9uQFF1Lh");
+  const [username, setUserName] = useState("emilys");
+  const [password, setPassword] = useState("emilyspass");
   //const [btnNotShow, setBtnNotShow] = useState(true);
 
   const nav = useNavigate();
@@ -17,13 +17,13 @@ const Login = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
-  const loginHandler = async (e) => {
+  /* const loginHandler = async (e) => {
     try {
       e.preventDefault();
       const user = { username, password };
       console.log(user);
       const { data } = await login(user);
-      console.log(data.token);
+      console.log(data.accessToken);
       console.log(data);
       dispatch(
         addUser({
@@ -38,7 +38,35 @@ const Login = () => {
     } catch (error) {
       toast.error("Username or password is incorrect. Please Try again.");
     }
-  };
+  }; */
+
+  const loginHandler = async (e) => {
+  e.preventDefault();
+
+  try {
+    const user = { username, password };
+    console.log(user);
+
+    const data = await login(user).unwrap();
+    console.log(data);
+
+    dispatch(
+      addUser({
+        user: data?.firstName,
+        token: data?.accessToken,
+        image: data?.image,
+      })
+    );
+
+    if (data?.accessToken) {
+      toast.success("Login successful");
+      nav("/");
+    }
+  } catch (error) {
+    console.log("Login error:", error);
+    toast.error("Username or password is incorrect. Please try again.");
+  }
+};
 
   return (
     <div className="">

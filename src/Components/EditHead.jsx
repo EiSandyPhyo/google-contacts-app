@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const EditHead = (props) => {
   const { contactDetail, firstname, lastname, handleSave } = props;
+  const fullname = firstname + " " + lastname;
   return (
     <>
       <div className=" flex justify-between align-top mt-3">
@@ -26,7 +27,7 @@ const EditHead = (props) => {
         <div className="flex gap-5 items-center">
           <img src={contactDetail?.image} className=" w-56 h-40" alt="" />
           <h1 className=" hidden lg:block font-semibold text-3xl tracking-wider">
-            {firstname + " " + lastname}
+            {fullname}
           </h1>
         </div>
         <button

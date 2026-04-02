@@ -24,7 +24,7 @@ const DetailSection = ({ contactDetail }) => {
           <p className="flex justify-start items-center gap-3 mb-2">
             <FaBirthdayCake />
               <span className=" text-blue-600 cursor-pointer">
-                Add Birthday
+               {contactDetail?.birthDate}
               </span>
           </p>
         </div>

@@ -12,7 +12,7 @@ import { BiMessage } from "react-icons/bi";
 import { CgCamera } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
-const DetailHead = ({ contactDetail }) => {
+const DetailHead = ({ contactDetail, handleDeleteContact }) => {
   const [star, setStar] = useState(false);
   console.log(contactDetail);
 
@@ -89,8 +89,15 @@ const DetailHead = ({ contactDetail }) => {
                 </a>
               </li>
               <li>
-                <a className=" active:bg-primary active:text-white">
-                  <MdDelete />
+                <a onClick={() => {
+                        const confirmed = window.confirm(
+                          `Are you sure you want to delete this "${contactDetail?.firstName} ${contactDetail?.lastName}" contact?`,
+                        );
+                        if (confirmed) {
+                          handleDeleteContact(contactDetail?.id);
+                        }
+                      }} className=" active:bg-primary active:text-white text-red-500">
+                  <MdDelete className="text-red-500" />
                   Delete
                 </a>
               </li>

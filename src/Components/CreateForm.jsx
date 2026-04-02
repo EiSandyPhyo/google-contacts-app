@@ -39,6 +39,9 @@ const CreateForm = () => {
     streetAddress.trim().length >= 5 &&
     city.trim().length >= 2;
 
+    const firstNameFormatted = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+    const lastNameFormatted = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+
   const handleCreateContact = () => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts")) || [];
 
@@ -51,8 +54,8 @@ const CreateForm = () => {
 
     const newContact = {
       id: maxId + 1,
-      firstName: firstName,
-      lastName: lastName,
+      firstName: firstNameFormatted,
+      lastName: lastNameFormatted,
       email: email,
       phone: phone,
       birthDate: birthday,
@@ -79,7 +82,7 @@ const CreateForm = () => {
     <div className="container">
       <CreateHead
         handleCreateContact={handleCreateContact}
-        firstName={firstName}
+        firstName={firstNameFormatted}
         isFormValid={isFormValid}
       />
 
@@ -90,14 +93,14 @@ const CreateForm = () => {
           </div>
           <div className="md:w-[700px]">
             <input
-              value={firstName}
+              value={firstNameFormatted}
               onChange={(e) => setFirstName(e.target.value)}
               type="text"
               placeholder="First Name"
               className={`input w-full max-w-xs border-primary hover:border-[#047AFF] block mb-3`}
             />
             <input
-              value={lastName}
+              value={lastNameFormatted}
               onChange={(e) => setLastName(e.target.value)}
               type="text"
               placeholder="Last Name"

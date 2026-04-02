@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const CreateHead = ({ handleCreateContact, firstName, isFormValid }) => {
-
   const imageName = firstName?.trim() ? firstName.toLowerCase() : "user";
 
   /*   const SaveHandler = () => {
@@ -30,11 +29,17 @@ const CreateHead = ({ handleCreateContact, firstName, isFormValid }) => {
             Create Contact
           </span>
         </div>
-        <button onClick={handleCreateContact}
-          disabled={!isFormValid} 
+        <button
+          onClick={handleCreateContact}
+          disabled={!isFormValid}
           className={`block lg:hidden btn btn-primary ${
-            isFormValid ? "btn-primary" : "myBtnDisable"
-          }`} >Save</button>
+            isFormValid
+              ? "btn-primary cursor-pointer"
+              : "myBtnDisable disabled:cursor-not-allowed"
+          }`}
+        >
+          Save
+        </button>
       </div>
 
       <div className="mt-5 p-3  flex justify-center lg:justify-between items-center  ">
@@ -50,9 +55,11 @@ const CreateHead = ({ handleCreateContact, firstName, isFormValid }) => {
         </div>
         <button
           onClick={handleCreateContact}
-          disabled={!isFormValid}   
+          disabled={!isFormValid}
           className={`hidden lg:block btn btn-primary ${
-            isFormValid ? "btn-primary cursor-pointer" : "myBtnDisable disabled:cursor-not-allowed"
+            isFormValid
+              ? "btn-primary cursor-pointer"
+              : "myBtnDisable disabled:cursor-not-allowed"
           }`}
         >
           Save

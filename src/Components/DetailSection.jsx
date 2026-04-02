@@ -4,8 +4,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { GrCircleQuestion } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import {AiOutlineArrowLeft} from "react-icons/ai"
-
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const DetailSection = ({ contactDetail }) => {
   return (
@@ -15,17 +14,21 @@ const DetailSection = ({ contactDetail }) => {
           <p className=" font-semibold mb-2">Contact details</p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <BsTelephone />
-              <span className=" text-blue-600 cursor-pointer">{contactDetail?.phone}</span>
+            <span className=" text-blue-600 cursor-pointer">
+              {contactDetail?.phone}
+            </span>
           </p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <MdOutlineMail />
-              <span className=" text-blue-600 cursor-pointer">{contactDetail?.email}</span>
+            <span className=" text-blue-600 cursor-pointer">
+              {contactDetail?.email}
+            </span>
           </p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <FaBirthdayCake />
-              <span className=" text-blue-600 cursor-pointer">
-               {contactDetail?.birthDate}
-              </span>
+            <span className=" text-blue-600 cursor-pointer">
+              {contactDetail?.birthDate}
+            </span>
           </p>
         </div>
         <div className=" md:basis-1/2 ">
@@ -35,11 +38,11 @@ const DetailSection = ({ contactDetail }) => {
               <GrCircleQuestion />
             </p>
           </div>
-          <p className=" mb-2">Last edited • Yesterday, 9:02 PM</p>
-          <p>Added to contacts • Yesterday, 9:02 PM</p>
+          <p className=" mb-2">Last edited • Yesterday, 9:02 PM</p>
+          <p>Added to contacts • Yesterday, 9:02 PM</p>
           <Link to={"/"}>
             <button className="w-[150px] h-[45px] mt-5 py-2 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary mySave flex justify-center items-center gap-2">
-              <AiOutlineArrowLeft className="  text-[22px]"/>
+              <AiOutlineArrowLeft className="  text-[22px]" />
               <span className=" font-semibold">Go Back</span>
             </button>
           </Link>

@@ -24,19 +24,16 @@ const DetailHead = ({ contactDetail, handleDeleteContact }) => {
             {contactDetail?.firstName[0]}
           </span> */}
           <img src={contactDetail?.image} className="w-56 h-40" alt="" />
-          <p className=" capitalize text-3xl tracking-wider font-semibold">
-            {contactDetail?.firstName +
-              " " +
-              contactDetail?.lastName}
+          <p className=" capitalize text-xl md:text-2xl lg:text-3xl tracking-wider font-semibold">
+            {contactDetail?.firstName + " " + contactDetail?.lastName}
           </p>
           <Link to={`/edit/${contactDetail?.id}`} state={contactDetail}>
-
-          <button className=" w-[120px] h-[50px] md:w-[30px] md:h-[30px] p-2   border-2 border-zinc-300 rounded-full inline-block md:hidden ">
-            <span className=" flex justify-center items-center text-2xl font-bold">
-              <MdEdit />
-              <span className="ml-2 block md:hidden"> Edit</span>
-            </span>
-          </button>
+            <button className=" w-[120px] h-[50px] md:w-[30px] md:h-[30px] p-2   border-2 border-zinc-300 rounded-full inline-block md:hidden ">
+              <span className=" flex justify-center items-center text-2xl font-bold">
+                <MdEdit />
+                <span className="ml-2 block md:hidden"> Edit</span>
+              </span>
+            </button>
           </Link>
         </div>
         <div className="absolute top-0 right-1 md:relative mt-5 flex md:justify-end items-center">
@@ -49,7 +46,7 @@ const DetailHead = ({ contactDetail, handleDeleteContact }) => {
             >
               <div
                 className=" tooltip tooltip-bottom capitalize"
-                data-tip={`${star?"remove star" :"star contact"}`}
+                data-tip={`${star ? "remove star" : "star contact"}`}
               >
                 {star ? (
                   <BsFillStarFill color="bg-primary" />
@@ -63,7 +60,6 @@ const DetailHead = ({ contactDetail, handleDeleteContact }) => {
             <label
               tabIndex={0}
               className="btn m-1 bg-zinc-50 font-extrabold text-2xl w-[40px] text-black hover:bg-zinc-50 border-0"
-              
             >
               ...
             </label>
@@ -89,14 +85,17 @@ const DetailHead = ({ contactDetail, handleDeleteContact }) => {
                 </a>
               </li>
               <li>
-                <a onClick={() => {
-                        const confirmed = window.confirm(
-                          `Are you sure you want to delete this "${contactDetail?.firstName} ${contactDetail?.lastName}" contact?`,
-                        );
-                        if (confirmed) {
-                          handleDeleteContact(contactDetail?.id);
-                        }
-                      }} className=" active:bg-primary active:text-white text-red-500">
+                <a
+                  onClick={() => {
+                    const confirmed = window.confirm(
+                      `Are you sure you want to delete this "${contactDetail?.firstName} ${contactDetail?.lastName}" contact?`,
+                    );
+                    if (confirmed) {
+                      handleDeleteContact(contactDetail?.id);
+                    }
+                  }}
+                  className=" active:bg-primary active:text-white text-red-500"
+                >
                   <MdDelete className="text-red-500" />
                   Delete
                 </a>
@@ -104,10 +103,9 @@ const DetailHead = ({ contactDetail, handleDeleteContact }) => {
             </ul>
           </div>
           <Link to={`/edit/${contactDetail?.id}`} state={contactDetail}>
-
-          <button className=" hidden md:block w-[100px] h-[50px] py-3 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary mySave">
-          <span className=" font-semibold">Edit</span>
-          </button>
+            <button className=" hidden md:block w-[100px] h-[50px] py-3 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary mySave">
+              <span className=" font-semibold">Edit</span>
+            </button>
           </Link>
         </div>
       </div>

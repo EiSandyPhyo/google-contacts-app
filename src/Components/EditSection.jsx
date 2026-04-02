@@ -7,30 +7,31 @@ import { BiLocationPlus } from "react-icons/bi";
 import { FaBirthdayCake } from "react-icons/fa";
 import { PiSuitcase } from "react-icons/pi";
 
-const EditSection = ({
-  firstname,
-  setFirstName,
-  lastname,
-  setLastName,
-  email,
-  setEmail,
-  phone,
-  setPhone,
-  birthday,
-  setBirthday,
-  companyName,
-  setCompanyName,
-  jobTitle,
-  setJobTitle,
-  companyDepartment,
-  setCompanyDepartment,
-  streetAddress,
-  setStreetAddress,
-  city,
-  setCity,
-  showM,
-  setShowM,
-}) => {
+const EditSection = (props) => {
+  const {
+    firstname,
+    setFirstName,
+    lastname,
+    setLastName,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    birthday,
+    setBirthday,
+    companyName,
+    setCompanyName,
+    jobTitle,
+    setJobTitle,
+    companyDepartment,
+    setCompanyDepartment,
+    streetAddress,
+    setStreetAddress,
+    city,
+    setCity,
+    showM,
+    setShowM,
+  } = props;
   /*     const [firstname,setFirstName]=useState(contactDetail?.firstName);
     const [lastname,setlastName]=useState(contactDetail?.lastName);
     const [email,setemail]=useState(contactDetail?.email);

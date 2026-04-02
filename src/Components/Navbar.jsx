@@ -12,13 +12,9 @@ import Search from "./Search";
 /* import { useLogoutMutation } from "../redux/api/authApi"; 
 import { useGetContactQuery } from "../redux/api/contactApi"; */
 
-const Navbar = ({
-  AppBar,
-  open,
-  handleDrawerClose,
-  handleDrawerOpen,
-  toggleDrawer,
-}) => {
+const Navbar = (props) => {
+  const { AppBar, open, handleDrawerClose, handleDrawerOpen, toggleDrawer } =
+    props;
   const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
   const pfImage = JSON.parse(Cookies.get("image"));
   const token = Cookies.get("token") || "";

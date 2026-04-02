@@ -2,7 +2,8 @@ import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
-const EditHead = ({ contactDetail, firstname, lastname, handleSave }) => {
+const EditHead = (props) => {
+  const { contactDetail, firstname, lastname, handleSave } = props;
   return (
     <>
       <div className=" flex justify-between align-top mt-3">

@@ -69,8 +69,12 @@ const EditContact = () => {
     );
 
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-    toast.success("Contact updated successfully");
-    navigate("/");
+    toast.success(`Contact updated successfully for ${updatedContact.firstName}`, {
+      duration: 2000,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 800);
   };
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard";
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import CreateContact from "./Pages/CreateContact";
 import EditContact from "./Pages/EditContact";
 import Login from "./Pages/Login";
@@ -13,6 +14,8 @@ import SearchDetail from "./Pages/SearchDetail";
 
 const App = () => {
   return (
+    <>
+    <Toaster position="bottom-right" />
     <Routes>
       <Route
         path="/"
@@ -30,6 +33,7 @@ const App = () => {
       <Route path="/detail/:id" element={<Detail />} />
       <Route path="/search/:id" element={<SearchDetail/>}/>
     </Routes>
+    </>
   );
 };
 

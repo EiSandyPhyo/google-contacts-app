@@ -4,6 +4,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { GoPerson } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
@@ -31,7 +32,14 @@ const Navbar = (props) => {
   const logoutHandler = async () => {
     localStorage.removeItem("contacts");
     dispatch(removeUser());
-    nav("/login");
+
+    toast.success("Logged out. See you again!", {
+      duration: 2000,
+    });
+
+    setTimeout(() => {
+      nav("/login");
+    }, 800);
   };
 
   return (

@@ -17,7 +17,7 @@ import { useGetContactQuery } from "../redux/api/contactApi";
 import { Loader } from "@mantine/core";
 import Pagination from "@mui/material/Pagination";
 import { Link } from "react-router-dom";
-
+import toast from "react-hot-toast";
 import "../App.css";
 import ModalBth from "./ModalBth";
 
@@ -96,6 +96,11 @@ const Contact = () => {
 
     setContacts(updatedContacts);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+
+    toast.success("Contact deleted successfully", {
+      duration: 2000,
+    });
+   
   };
 
   console.log(contacts);

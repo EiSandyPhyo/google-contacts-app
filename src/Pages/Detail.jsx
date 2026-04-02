@@ -2,6 +2,7 @@ import React from "react";
 import DetailHead from "../Components/DetailHead";
 import DetailSection from "../Components/DetailSection";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import Sidebar from "../Components/Sidebar";
 
 const Detail = () => {
@@ -23,7 +24,13 @@ const Detail = () => {
 
     //setContacts(updatedContacts);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-    navigate("/");
+
+    toast.success("Contact deleted successfully", {
+      duration: 2000,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 800);
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { RiLoginBoxFill } from "react-icons/ri";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/authApi";
 import { useDispatch } from "react-redux";
@@ -41,32 +41,37 @@ const Login = () => {
   }; */
 
   const loginHandler = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const user = { username, password };
-    console.log(user);
+    try {
+      const user = { username, password };
+      console.log(user);
 
-    const data = await login(user).unwrap();
-    console.log(data);
+      const data = await login(user).unwrap();
+      console.log(data);
 
-    dispatch(
-      addUser({
-        user: data?.firstName,
-        token: data?.accessToken,
-        image: data?.image,
-      })
-    );
+      dispatch(
+        addUser({
+          user: data?.firstName,
+          token: data?.accessToken,
+          image: data?.image,
+        }),
+      );
 
-    if (data?.accessToken) {
-      toast.success("Login successful");
-      nav("/");
+      if (data?.accessToken) {
+        // nav("/");
+        toast.success("Logged in successfully", {
+          duration: 3000,
+        });
+        setTimeout(() => {
+          nav("/");
+        }, 800);
+      }
+    } catch (error) {
+      console.log("Login error:", error);
+      toast.error("Username or password is incorrect. Please try again.");
     }
-  } catch (error) {
-    console.log("Login error:", error);
-    toast.error("Username or password is incorrect. Please try again.");
-  }
-};
+  };
 
   return (
     <div className="">
@@ -240,11 +245,11 @@ const Login = () => {
                 <p className="text-gray-700 font-medium">
                   Don't have an account?
                 </p>
-                <Link to={"/register"}>
-                  <p className="text-blue-600 font-medium cursor-pointer">
-                    Register
-                  </p>
-                </Link>
+                {/* <Link to={"/register"}> */}
+                <p className="text-blue-600 font-medium cursor-pointer">
+                  Register
+                </p>
+                {/* </Link> */}
               </div>
 
               <button
@@ -253,14 +258,11 @@ const Login = () => {
               >
                 <span className=" font-semibold">Login</span>
               </button>
-              {/* <Link to={'/register'}>
-            <button className='px-12 py-2 login rounded text-white bg-red-500 hover:bg-red-700'>Logout</button>
-            </Link> */}
             </div>
           </div>
         </form>
       </div>
-      <Toaster
+      {/* <Toaster
         position="bottom-right"
         toastOptions={{
           className: "",
@@ -270,7 +272,7 @@ const Login = () => {
             color: "#fff",
           },
 
-          // Default options for specific types
+          
           success: {
             duration: 3000,
             theme: {
@@ -279,7 +281,7 @@ const Login = () => {
             },
           },
         }}
-      />
+      /> */}
     </div>
   );
 };

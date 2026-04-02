@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaRegistered } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 const Register = () => {
@@ -277,27 +277,6 @@ const Register = () => {
           </div>
         </form>
       </div>
-
-      <Toaster
-        position="bottom-right"
-        toastOptions={{
-          className: "",
-          duration: 5000,
-          style: {
-            background: "#1f3738",
-            color: "#fff",
-          },
-
-          // Default options for specific types
-          success: {
-            duration: 3000,
-            theme: {
-              primary: "green",
-              secondary: "black",
-            },
-          },
-        }}
-      />
     </div>
   );
 };

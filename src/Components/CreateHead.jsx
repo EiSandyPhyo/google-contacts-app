@@ -3,20 +3,9 @@ import { BiImageAdd } from "react-icons/bi";
 import { TfiPlus } from "react-icons/tfi";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 
 const CreateHead = ({ handleCreateContact, firstName, isFormValid }) => {
   const imageName = firstName?.trim() ? firstName.toLowerCase() : "user";
-
-  /*   const SaveHandler = () => {
-    if (btnNotShow) {
-      toast.error(
-        "Fill the name and phone number.The phone number must be between 11 and 15 characters",
-      );
-    } else {
-      toast.success("New contact create successfully.");
-    }
-  }; */
 
   return (
     <div className=" ">
@@ -65,27 +54,6 @@ const CreateHead = ({ handleCreateContact, firstName, isFormValid }) => {
           Save
         </button>
       </div>
-
-      <Toaster
-        position="bottom-right"
-        toastOptions={{
-          className: "",
-          duration: 5000,
-          style: {
-            background: "#1f3738",
-            color: "#fff",
-          },
-
-          // Default options for specific types
-          success: {
-            duration: 3000,
-            theme: {
-              primary: "green",
-              secondary: "black",
-            },
-          },
-        }}
-      />
     </div>
   );
 };

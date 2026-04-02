@@ -6,8 +6,9 @@ import { BsTelephone } from "react-icons/bs";
 import { BiLocationPlus } from "react-icons/bi";
 import { FaBirthdayCake } from "react-icons/fa";
 import { PiSuitcase } from "react-icons/pi";
-import CreateHead from "../Components/CreateHead";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import CreateHead from "../Components/CreateHead";
 
 const CreateForm = () => {
   const [showM, setShowM] = useState(false);
@@ -39,8 +40,10 @@ const CreateForm = () => {
     streetAddress.trim().length >= 5 &&
     city.trim().length >= 2;
 
-    const firstNameFormatted = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-    const lastNameFormatted = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+  const firstNameFormatted =
+    firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  const lastNameFormatted =
+    lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
 
   const handleCreateContact = () => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts")) || [];
@@ -74,8 +77,13 @@ const CreateForm = () => {
     const updatedContacts = [newContact, ...savedContacts];
 
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-    //toast.success("Contact created successfully");
-    navigate("/");
+    toast.success("Contact created successfully", {
+      duration: 2000,
+    });
+
+    setTimeout(() => {
+      navigate("/");
+    }, 800);
   };
 
   return (
